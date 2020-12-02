@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SocketClient</string>
+    <string name="lbl_ip">IP:</string>
+    <string name="lbl_port">Port:</string>
+    <string name="txt_ip"></string>
+    <string name="txt_port"></string>
+    <string name="txtmulti_chat"></string>
+    <string name="txt_msg"></string>
+    <string name="Button_Connect">Connect</string>
+    <string name="Button_Disconnected">Disconnect</string>
+    <string name="Button_Send">Send</string>
+    <string name="Hint_IP">127.0.0.1</string>
+    <string name="Hint_Port">8000</string>
+    <string name="Hint_msg">Message</string>
 </resources>
