@@ -82,13 +82,14 @@
         android:id="@+id/txt_history"
         android:layout_width="400dp"
         android:layout_height="592dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="52dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="@string/txtmulti_chat"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
