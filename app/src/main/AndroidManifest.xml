@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.socketclient">
+    <uses-permission
+        android:required="true"
+        android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission
+        android:required="true"
+        android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission
+        android:required="true"
+        android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission
+        android:required="true"
+        android:name="android.permission.INTERNET"/>
+    <!--src
+    https://stackoverflow.com/questions/10388250/how-to-send-string-from-android-to-pc-over-wifi
+    https://developer.android.com/training/connect-devices-wirelessly/wifi-direct (permission to connect P2P -->
 
     <application
         android:allowBackup="true"
