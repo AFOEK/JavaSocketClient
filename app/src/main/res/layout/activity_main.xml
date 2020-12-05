@@ -81,15 +81,15 @@
     <EditText
         android:id="@+id/txt_history"
         android:layout_width="400dp"
-        android:layout_height="592dp"
-        android:layout_marginTop="52dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="116dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="@string/txtmulti_chat"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,7 +106,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_history"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintVertical_bias="0.328" />
 
     <Button
         android:id="@+id/butt_send"
@@ -117,4 +117,47 @@
         android:text="@string/Button_Send"
         app:layout_constraintStart_toEndOf="@+id/txt_msg"
         app:layout_constraintTop_toBottomOf="@+id/txt_history" />
+
+    <TextView
+        android:id="@+id/lbl_stat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Disconnect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_msg"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RadioGroup
+        android:id="@+id/butt_grup"
+        android:layout_width="410dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="75dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/txt_history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintVertical_bias="1.0">
+
+        <RadioButton
+            android:id="@+id/rad_server"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="20dp"
+            android:text="Server" />
+
+        <RadioButton
+            android:id="@+id/rad_client"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Client" />
+    </RadioGroup>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

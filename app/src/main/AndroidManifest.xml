@@ -13,7 +13,7 @@
     <uses-permission
         android:required="true"
         android:name="android.permission.INTERNET"/>
-    <!--src
+    <!--src (Ver 0.0.2 A)
     https://stackoverflow.com/questions/10388250/how-to-send-string-from-android-to-pc-over-wifi
     https://developer.android.com/training/connect-devices-wirelessly/wifi-direct (permission to connect P2P -->
 
