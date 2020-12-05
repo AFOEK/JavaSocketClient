@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,7 +22,8 @@ import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText txt_ip, txt_port, txt_msg, txt_history;
+    EditText txt_ip, txt_port, txt_msg;
+    TextView txt_history;
     Button butt_connect, butt_dc, butt_send;
     String IPaddress = "", Port = "", Message = "", History = "";
     Handler handler = new Handler();
@@ -37,12 +39,38 @@ public class MainActivity extends AppCompatActivity {
         String Port = txt_port.getText().toString();
         txt_msg = (EditText) findViewById(R.id.txt_msg);
         String Message = txt_msg.getText().toString();
-        txt_history = (EditText) findViewById(R.id.txt_history);
+        txt_history = (TextView) findViewById(R.id.txt_history);
         String History = txt_history.getText().toString();
 
         //oncreate for action
         butt_connect = (Button) findViewById(R.id.butt_connect);
         butt_dc = (Button) findViewById(R.id.butt_dc);
         butt_send = (Button) findViewById(R.id.butt_send);
+
+        butt_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        butt_dc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txt_msg.setText("");
+                txt_ip.setText("");
+                txt_port.setText("");
+            }
+        });
+        butt_connect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (IPaddress != ""){
+
+
+
+                }
+            }
+        });
     }
 }
