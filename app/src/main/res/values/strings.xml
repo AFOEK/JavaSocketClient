@@ -6,8 +6,8 @@
     <string name="txt_port"></string>
     <string name="txtmulti_chat"></string>
     <string name="txt_msg"></string>
-    <string name="Button_Connect">Connect</string>
-    <string name="Button_Disconnected">Disconnect</string>
+    <string name="Button_Connect">CN</string>
+    <string name="Button_Disconnected">DC</string>
     <string name="Button_Send">Send</string>
     <string name="Hint_IP">127.0.0.1</string>
     <string name="Hint_Port">8000</string>
