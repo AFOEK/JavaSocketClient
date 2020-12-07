@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -93,11 +94,12 @@ public class MainActivity extends AppCompatActivity {
                 String msg = txt_msg.getText().toString();
                 if(msg !=""){
                     s=msg;
-                    out.print(s);
-                    txt_msg.setText("");
-                    s="";
+                    out.print(msg);
+                    out.flush();
                 }
-
+                else{
+                    Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
