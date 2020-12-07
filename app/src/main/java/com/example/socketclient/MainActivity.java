@@ -47,25 +47,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //EDIT TEXT
+        //TEXT
         txt_ip = (EditText) findViewById(R.id.txt_ip);
         txt_port = (EditText) findViewById(R.id.txt_port);
         txt_msg = (EditText) findViewById(R.id.txt_msg);
         txt_history = (TextView) findViewById(R.id.txt_history);
+        lbl_stat = (TextView) findViewById(R.id.lbl_stat);
 
         //BUTTONS
         butt_connect = (Button) findViewById(R.id.butt_connect);
         butt_dc = (Button) findViewById(R.id.butt_dc);
         butt_send = (Button) findViewById(R.id.butt_send);
 
-        //LABEL
-        lbl_stat = (TextView) findViewById(R.id.lbl_stat);
-
         //RADIO GROUP & BTN
         rad_grup = (RadioGroup)findViewById(R.id.rad_grup);
         rad_server = (RadioButton) findViewById(R.id.rad_server);
+        rad_server.setChecked(true);
         rad_client = (RadioButton)findViewById(R.id.rad_client);
-
+        rad_client.setChecked(false);
 
         //CODE BTN
 
@@ -108,19 +107,36 @@ public class MainActivity extends AppCompatActivity {
                 //SERVER LINE 192-198
                 Port = Integer.parseInt(txt_port.getText().toString());
                 IPaddress = txt_ip.getText().toString();
+
                 if (IPaddress != "" && rad_client.isSelected() ) {
 
-
-
                     if (rad_client.isSelected()) {
-//                        if (txt_port.getText().toString() == "") {
-//                            Port = 8000;
-//                        }
+                        if (txt_port.getText().toString() == "") {
+                            Port = 8000;
+                        }
+                        if(txt_ip.getText().toString() == "")
+                        {
+
+                        }
+
+                        try
+                        {
+                            Socket socket = new Socket(IPaddress, Port);
+                            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                            String response = in.readLine();
+
+                            while(!(s = in.readLine()).isEmpty()){
+                               // timer.start();
+                            }
+
+                            socket.close();
+                        }
+                        catch(Exception e) {}
 
                         butt_send.setEnabled(true);
                         butt_dc.setEnabled(true);
                         txt_msg.append(s);
-
                     }
                 }
                //209-210
