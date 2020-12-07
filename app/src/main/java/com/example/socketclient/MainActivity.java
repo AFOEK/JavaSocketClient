@@ -2,7 +2,10 @@ package com.example.socketclient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
 import java.io.Closeable;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.*;
 import java.io.File;
@@ -30,8 +33,11 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup rad_grup;
     RadioButton rad_client, rad_server;
     int Port;
-    String  IPaddress, Message, History;
+    String  IPaddress, s, END_CHAT_SESSION;
     ServerSocket svr;
+    Socket socket;
+    PrintWriter out;
+    BufferedReader in;
 
 
     Handler handler = new Handler();
@@ -60,13 +66,8 @@ public class MainActivity extends AppCompatActivity {
         rad_server = (RadioButton) findViewById(R.id.rad_server);
         rad_client = (RadioButton)findViewById(R.id.rad_client);
 
-        //CODE BTN
-        butt_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
+        //CODE BTN
 
         butt_dc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,23 +75,54 @@ public class MainActivity extends AppCompatActivity {
                 txt_msg.setText("");
                 txt_ip.setText("");
                 txt_port.setText("");
+                butt_send.setEnabled(false);
+                butt_dc.setEnabled(false);
+                rad_client.setEnabled(true);
+                rad_server.setEnabled(false);
+                in= null;
+                out=null;
+                svr=null;
+                socket=null;
+                lbl_stat.setText("Disconnected");
+                lbl_stat.setBackgroundColor(0xFFFF0000);
+            }
+        });
+
+        butt_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String msg = txt_msg.getText().toString();
+                if(msg !=""){
+                    s=msg;
+                    out.print(s);
+                    txt_msg.setText("");
+                    s="";
+                }
 
             }
         });
+
         butt_connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (IPaddress != "") {
-                    //SERVER LINE 192-198
-                    Port = Integer.parseInt(txt_port.getText().toString());
-                    IPaddress = txt_ip.getText().toString();
-                    if (rad_server.isSelected()) {
-                        if (txt_port.getText().toString() == "") {
-                            Port = 8000;
-                        }
+                //SERVER LINE 192-198
+                Port = Integer.parseInt(txt_port.getText().toString());
+                IPaddress = txt_ip.getText().toString();
+                if (IPaddress != "" && rad_client.isSelected() ) {
+
+
+
+                    if (rad_client.isSelected()) {
+//                        if (txt_port.getText().toString() == "") {
+//                            Port = 8000;
+//                        }
+
+                        butt_send.setEnabled(true);
+                        butt_dc.setEnabled(true);
+                        txt_msg.append(s);
+
                     }
                 }
-                    //svr = new Socket(Port);
                //209-210
                 txt_msg.setText("");
                 txt_msg.setEnabled(false);
