@@ -34,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup rad_grup;
     RadioButton rad_client, rad_server;
     int Port;
-    String  IPaddress, s, END_CHAT_SESSION;
+    String  IPaddress, s, END_CHAT_SESSION, msg="", line = null;;
+
     ServerSocket svr;
     Socket socket;
     PrintWriter out;
     BufferedReader in;
-
 
     Handler handler = new Handler();
 
@@ -110,8 +110,10 @@ public class MainActivity extends AppCompatActivity {
                 Port = Integer.parseInt(txt_port.getText().toString());
                 IPaddress = txt_ip.getText().toString();
 
-                if (IPaddress != "" && rad_client.isSelected() ) {
+                Thread sentThread = new Thread((Runnable) new sentMessage());
+                sentThread.start();
 
+                if (IPaddress != "" && rad_client.isSelected() ) {
                     if (rad_client.isSelected()) {
                         if (txt_port.getText().toString() == "") {
                             Port = 8000;
@@ -123,15 +125,22 @@ public class MainActivity extends AppCompatActivity {
 
                         try
                         {
+                            //open socket in server
                             Socket socket = new Socket(IPaddress, Port);
+
+                            //I/O stream for comm
                             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+                            //out.writeBytes(s);
+
+                            //receive from client??
                             String response = in.readLine();
 
                             while(!(s = in.readLine()).isEmpty()){
                                // timer.start();
                             }
-
+                            //close client socket
                             socket.close();
                         }
                         catch(Exception e) {}
@@ -156,5 +165,73 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
-}
+/* //CODE CLASSES
+        class ClientThread implements Runnable
+        {
+            @Override
+            public void run() {
+
+                try
+                {
+                    while(true)
+                    {
+                        InetAddress serverAddr = InetAddress.getByName(IPaddress);
+                        //Socket socket = new Socket (serverAddr, 10000); //error nih, suruh nambah catch lg
+
+                        DataInputStream in = new DataInputStream(socket.getInputStream());
+
+                        //deklarasi var line di atas bareng String IPaddress dll
+                        while ((line = in.readLine()) != null)
+                        {
+                            msg = msg + "Server : " + line + "\n";
+
+                            handler.post(new Runnable(){
+                            @Override
+                            public void run()
+                            {
+                                txt_history.setText(msg); //chat. to txt_history
+                            }
+                        });
+                        }
+                        in.close();
+                        socket.close();
+                        Thread.sleep(100);
+                    }
+                }
+                catch (Exception e)
+                {}
+            }
+        }
+
+        class sentMessage implements Runnable
+        {
+            @Override
+            public void run() {
+                try
+                {
+                    InetAddress serverAddr = InetAddress.getByName(IPaddress);
+                    Socket socket = new Socket(serverAddr, 10000); //
+
+                    DataOutputStream os = new DataOutputStream(socket.getOutputStream());
+                    s = txt_msg.getText().toString(); // code asli pg.14
+                    s = s + "\n";
+                    msg = msg + "Client : " + s; //I declared var msg on String, along with IPaddress and s..
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            txt_history.setText(msg); //chat. to txt_history.
+                        }
+                    });
+                    os.writeBytes(s); //str to s
+                    os.flush();
+                    os.close();
+                    socket.close();
+                }
+                catch(IOException e)
+                {
+                }
+            }
+            }
+*/
+            }
+        }
